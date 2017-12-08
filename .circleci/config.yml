@@ -1,11 +1,15 @@
 version: 2
 jobs:
   build:
+    working_directory: /
     docker:
-      steps:
-        - run:
-            name: Build docker container
-            command: docker build -t docker-microservice-template ./ --no-cache
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker container
+          command: docker build -t docker-microservice-template ./ --no-cache
   test:
     steps:
       - run:
