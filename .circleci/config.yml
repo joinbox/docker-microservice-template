@@ -1,10 +1,11 @@
 version: 2
 jobs:
   build:
-    steps:
-      - run:
-          name: Build docker container
-          command: docker build -t docker-microservice-template ./ --no-cache
+    docker:
+      steps:
+        - run:
+            name: Build docker container
+            command: docker build -t docker-microservice-template ./ --no-cache
   test:
     steps:
       - run:
