@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t docker-microservice-template ./ --no-cache
+
+test:
+  override:
+    - docker run -e NODE_ENV='dev' -dit --name docker-microservice-template docker-microservice-template /bin/bash; sleep 10
+    - docker exec -ti docker-microservice-template /bin/bash; exit

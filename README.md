@@ -13,7 +13,7 @@ A Ubuntu based Docker template for Node.js Applications
 
 Some handy commands to work with the container.
 
-Note: The Image and the container both have the name `docker-microservice-template`.
+**Note**: The Image and the container both have the name `docker-microservice-template`.
 
 ### Build the container
 `docker build -t docker-microservice-template ./ --no-cache`

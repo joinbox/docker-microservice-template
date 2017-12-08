@@ -4,7 +4,7 @@ LABEL maintainer="Joinbox <hosting@joinbox.com>"
 
 # update && install required software
 RUN apt -y update && apt install -y
-RUN apt -y install nano make gcc g++ git-core sudo htop curl vim apt-utils
+RUN apt -y install nano make gcc g++ git-core sudo htop curl vim apt-utils unattended-upgrades
 
 # add ubuntu user
 RUN adduser --group --system --disabled-password --gecos "" ubuntu
