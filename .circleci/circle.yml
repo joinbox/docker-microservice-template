@@ -1,9 +1,15 @@
 version: 2
 jobs:
   build:
-    docker:
-      - docker build -t docker-microservice-template ./ --no-cache
+    steps:
+      - run:
+          name: Build docker container
+          command: docker build -t docker-microservice-template ./ --no-cache
   test:
-    override:
-      - docker run -e NODE_ENV='dev' -dit --name docker-microservice-template docker-microservice-template /bin/bash; sleep 10
-      - docker exec -ti docker-microservice-template /bin/bash; exit
+    steps:
+      - run:
+          name: Run the dokcer container
+          command: docker run -e NODE_ENV='dev' -dit --name docker-microservice-template docker-microservice-template /bin/bash; sleep 10
+      - run:
+          name: Connect the docker container
+          command: docker exec -ti docker-microservice-template /bin/bash; exit
