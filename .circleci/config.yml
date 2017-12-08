@@ -12,7 +12,7 @@ jobs:
       - save_cache:
           key: docker_cache_ci
           paths:
-            - docker-cache
+            - docker-cache/ci-test-docker-microservice-template.tar
   publish-image:
     docker:
       - image: docker:17.05.0-ce-git
