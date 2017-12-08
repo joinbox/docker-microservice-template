@@ -29,7 +29,10 @@ jobs:
           key: docker_cache_ci
       - run:
           name: ls -la
-          command: ls -la /root/
+          command: ls -la /
+      - run:
+          name: ls -la
+          command: ls -la /root/project/docker-cache/
       - run:
           name: Load Image from Cache
           command: docker load -i docker-cache/ci-test-docker-microservice-template.tar
