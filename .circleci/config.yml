@@ -21,8 +21,11 @@ jobs:
           key: docker_cache_ci
       - setup_remote_docker
       - run:
+          name: ls -la
+          command: ls -la  /root/project/docker-cache/
+      - run:
           name: Load Image from Cache
-          command: docker load < docker-cache/ci-test-docker-microservice-template.tar
+          command: docker load -i docker-cache/ci-test-docker-microservice-template.tar
       - run:
           name: Tag the docker image
           command: docker tag ci-test-docker-microservice-template:latest 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
