@@ -9,6 +9,11 @@ jobs:
       - run:
           name: Build docker container
           command: docker build -t ci-test-docker-microservice-template ./ --no-cache
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /docker-cache
+            docker save -o /docker-cache/ci-test-docker-microservice-template.tar ci-test-docker-microservice-template
       - save_cache:
           key: docker_cache_ci
           paths:
