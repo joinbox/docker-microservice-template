@@ -13,12 +13,12 @@ jobs:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
-      -run:
+      - run:
           name: AWS login
           command: $(aws ecr get-login --no-include-email --region eu-central-1)
-      -run:
+      - run:
           name: Tag the docker image
           command: docker tag ci-test-docker-microservice-template:latest 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
-      -run:
+      - run:
           name: Push the docker image
           command: docker push 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
