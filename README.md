@@ -6,7 +6,6 @@ A Ubuntu based Docker template for Node.js Applications
 
 - Node.js 8.x
 - Npm 5.x
-- Pull project from github (Adds a key to pull your project)
 - Publish to AWS
 
 ## Docker commands
