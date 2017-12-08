@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Build docker container
           command: docker build -t ci-test-docker-microservice-template ./ --no-cache
-  depoly:
+  publish-image:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -24,10 +24,10 @@ jobs:
           command: docker push 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
 workflows:
   version: 2
-  build-deploy:
+  build-publish-image:
     jobs:
       - build
-      - deploy:
+      - publish-image:
           requires:
             - build
           filters:
