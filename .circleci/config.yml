@@ -9,11 +9,19 @@ jobs:
       - run:
           name: Build docker container
           command: docker build -t ci-test-docker-microservice-template ./ --no-cache
+      - save_cache:
+          key: *docker_cache_key
+          paths:
+            - docker-cache
   publish-image:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
+      - *restore_docker_cache
       - setup_remote_docker
+      - run:
+          name: Load Image from Cache
+          command: docker load < docker-cache/built-image.tar
       - run:
           name: Tag the docker image
           command: docker tag ci-test-docker-microservice-template:latest 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
