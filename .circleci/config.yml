@@ -13,6 +13,7 @@ jobs:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
+      - setup_remote_docker
       - run:
           name: Tag the docker image
           command: docker tag ci-test-docker-microservice-template:latest 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
