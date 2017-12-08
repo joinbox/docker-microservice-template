@@ -1,4 +1,7 @@
 version: 2
+dependencies:
+  override:
+    - $(aws ecr get-login --no-include-email --region eu-central-1)
 jobs:
   build:
     docker:
@@ -8,4 +11,10 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker container
-          command: docker build -t docker-microservice-template ./ --no-cache
+          command: docker build -t ci-test-docker-microservice-template ./ --no-cache
+  depoly:
+    test:
+      branch: master
+      commands:
+        - docker tag ci-test-docker-microservice-template:latest 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
+        - docker push 367608115228.dkr.ecr.eu-central-1.amazonaws.com/ci-test-docker-microservice-template:latest
